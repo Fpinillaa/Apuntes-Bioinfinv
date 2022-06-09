@@ -178,8 +178,73 @@ En este caso con `grep` podemos encontrar y obtener información de diferentes a
 
 > Tip: Sí utilizas el comando `history` te muestra los comandos que has escribido y si lo combinas con `|` y `grep` puedes encontrar cuantas veces se ha usado lo que busques, por ejemplo `$history | grep -Eo "less"` y nos muestra cuantas veces hemos usado el comando `less` en el historial
 
+## Loops con bash
 
+Estos comandos permiten repetir una serie de comando con diferentes variables de una lista, en donde el comando después del `for` nos indica como el elemento de una lista
 
+> `$for [letra o símbolo con el cual identificaremos las siguientes variables] in [las variables]`
 
+> $ for x in adenina citosina guanina timina; do
+> echo "La $x es una base nitrogenada"
+> 
+> done
+>
+> La adenina es una base nitrogenada
+> 
+> La citosina es una base nitrogenada
+> 
+> La guanina es una base nitrogenada
+> 
+> La timina es una base nitrogenada
 
+#### **Datos extras**
+
+- Los datos se separan por espacio
+- Para referirnos al elemento, letra o símbolo del primer [..] ocupamos `$`
+
+> Tip: ocupamos comillas para poder referirnos a una frase en vez de una palabra
+> `;` nos permite separar lo que estamos pidiendo de los comandos `for x in {1..100};do` + `mkdir directorio$x; done` esto nos hizo directorios con el nombre directorio desde el 1 - 100 y para eliminarlos ocupamos `$rm -r directorio{1..100}`
+
+## **Definir variables**
+
+Para los `for loops` tambien podemos ocupar variables definidas anteriormente y sin necesidad de ponerlas en el comando de `for loop` 
+
+> Tip: para usarse al armar la variable esta no debe ire separada de signo igual `$ ladra=guau` y luego se agrega al `for loop`
+
+> $ ladrar=guau
+> $ for c in perro perrito; do
+> 
+> for> echo El $c hace $ladrar
+> 
+> for> done
+> 
+> El perro hace guau
+>  
+> El   perrito hace guau
+
+> Tip: **lograr armar un directorio en `Tomates/verdesFritos` con `for loop` y poseer una variable externa**
+
+## Crear arrays y utilizarlos como una lista en un loop
+
+Los arrays son una lista y se generan parecida a las variables
+
+> `$ l=( perro perrito )`
+
+Luego de eso hay que definir en nuesto loop que `l` es un array y para decirle esto al loop hay que usar la anotación `${l[@]}`
+
+> for i in ${l[@]}; do echo El $i hace guau; done
+> 
+> El perro hace guau
+> 
+> El perrito hace guau
+
+En este caso tambien podemos ocupar la variable como un comando `grep`, usando la siguiente configuracion `[letra para una array]=($(comando))`
+
+> a=($(grep -Eo "\w+_[0-9]*" nuevos_final.fam))
+> 
+> for i in ${a[@]}; do echo Hacer algo con la muestra $i; done
+>
+> En el archivo `Prac_Uni1/Maiz` 
+> 
+> Con esto le agregara el "Hacer algo con la muestra" a todos los nombres de los datos contenidos en `nuevos_final.fam`
 
