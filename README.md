@@ -242,9 +242,32 @@ En este caso tambien podemos ocupar la variable como un comando `grep`, usando l
 
 > a=($(grep -Eo "\w+_[0-9]*" nuevos_final.fam))
 > 
-> for i in ${a[@]}; do echo Hacer algo con la muestra $i; done
+> for i in `${a[@]}`; do echo Hacer algo con la muestra $i; done
 >
 > En el archivo `Prac_Uni1/Maiz` 
 > 
 > Con esto le agregara el "Hacer algo con la muestra" a todos los nombres de los datos contenidos en `nuevos_final.fam`
 
+> Tip: **buscar bien como poder hacer una variable desde un comando**
+
+A veces los array presentan problemas, pero como los datos son tantos es muy dificil verlos por lo que se prefiere mejor leer los elementos directo a un archivo
+
+> `grep -Eo "\w+_[0-9]*" nuevos_final.fam > muestras.txt`
+> 
+> (para poder ver los nombres del archivo en un archivo nuevo .txt)
+> 
+> `for i in $(cat muestras.txt); do echo Hacer algo con la muestra $i; done`
+> 
+> (para usar `for loops` y asi poder darle un agregado a nuestros datos, pero estos se van a borrar a no ser que los guardemos en un documento
+>
+> `for i in $(cat muestras.txt); do echo Hacer algo con la muestra $i; done > muestras2.txt`
+> 
+> (la parte final de esta linea nos deja poder llevar los datos extraidos a un archivo nuevo .txt
+
+##### Ejercicios
+
+1.- `grep -Eo "\w+_[0-9]*" nuevos_final.fam > nombres_nuevosfinal.txt` con esto podemos crear un archivo .txt con los combres de los datos de `nuevos_final.fam`
+
+2.- `for i in {A..D}; do mkdir Pob$i; done` y para eliminarlos `rm -r Pob{A..D}`, pero para poder armar un archivo que tenga nombre Pob{A..D} y que dentro de el contenga un archivo de texto que se llame igula que el directorio hay que ocupar el siguiente scrip `for i in {A..D}; do mkdir -p Pob$i/Pob$i.txt; done`
+
+3.-
