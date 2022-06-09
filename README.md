@@ -1,5 +1,5 @@
-# Tareas-Bioinfinv
-Repositorio con tareas y anotaciones para el repositorio Bioinfinv
+# Repositorio de apuntes
+Repositorio con anotaciones para el repositorio [Bioinfinv](https://github.com/ravuch/BioinfinvRepro/blob/master/Unidad1/Unidad1_Intro_programacion.md) 
 
 En la primera parte realizaremos las tareas referentes a la Unidad 1, en la que trabajaremos en el terminal (es un acercamiento a como ocupar algunos comandos del terminal)
 
@@ -91,7 +91,93 @@ ejemplo en la carpeta Maiz colocar `$ ls *.bed` nos va a permitir encontrar arch
 
 - `wc` nos indica un resumen del archivo que les indiquemos "(número de líneas), (número de palabras) y (número de caracteres del archivo)". Se indica `wc (nombre del archivo)`
 
-- `cat` 
+- `cat` proviene de concatenar y nos permite pegar un archivo al final de otro
+> ejemplo al usar `$cat nuevos_final.fam *.log` nos permitió pegar el archivo `.log` (solo hay un archivo .log) al final
+> en el caso de como poder pegar más de un archivo lo podemos hacer simplemente dejando un espacio entre oraciones y agregar el nombre del archivo `$cat (nombre archivo uno) (nombre archivo dos) (nombre archivo tres)`
+
+> Tip: para poder dejar los archivos en un archivo nuevo se puede `$cat (nombre del archivo) (nombre del archivo) > (nombre del archivo nuevo)` en caso que si se quieres sobrescribir se le pone `>>` en vez de `>` y para ver los archivos se ponen ocupa `more` o `less`
+
+# `grep`
+
+En este caso este comando es necesario separarlo por lo grande que es y las utilidades que nos puede dar
+- `grep` es un comando que ocupa expresiones regulares para poder reformatear archivos, analizar ciertas muestras y no otras, además de identificar patrones cortos de DNA
+
+> La forma de usarse es `$grep [acción] [expresión regular] [nombre del archivo]`
+>
+> Se puede usar tanto con **caracteres literarios** como letras y números, además con **metacaracteres** como los usados arriba `*`, `?`, `^`, entre otros.
+
+- Las operaciones regulares se separan en **Operadores**, **Cuantificadores** y **Posicionadores**
+
+#### Operadores
+
+- [..] Nos sirve para generar una lista de caracteres, `[Bb]iology10[1234]` nos buscara aquellos que tengan la palabra biology como Biology, además de los que están enumerados 101, 102, 103, 104. Seria así `biology102` o `Biology104`
+- [^..] Lista de caracteres que no queremos buscar 
+- \w Nos permite buscar cualquier "carácter de palabra"
+- \W Nos permite buscar cualquier "carácter **NO** palabra"
+- \ Nos permite buscar los metacarateres ya que estos no se pueden usar por si solos, al usar esto se conoce como "escapar"
+- | Significa "or" acepta un patrón u otro. p(err|at)o lo que nos va a permitir buscar tanto "perro" como "pato", a este símbolo se conoce como bash también
+- (...) Grupos, que nos permite recuperar partes del patrón encontrado para ser usadas después
+
+#### Cuantificadores
+- * Cero o más ocurrencias del carácter anterior, 10*, va a aceptar "1", "10", "100", etc
+- + Una o más ocurrencias del carácter anterior en este caso va a encontrar los mismos caracteres, pero no el "1" -> 10+ va a aceptar "10", "100", "1000", etc
+- ? Van a aceptar la ocurrencia del carácter anterior, `patos?`, nos va a dar la cadena "pato" y "patos"
+- {n,} Mínimo n veces el carácter anterior, seria 10{5,}, va a aceptar las cadenas "100000", "1000000", etc
+- {n,m} Entre n y m veces el carácter anterior, seria 10{2,5}, va a aceptar las cadenas "100" y "10000"
+
+#### Posicionadores
+- < Nos indica el inicio de palabra, seria <GAAA, aceptaría "GAAACCTT", pero no "CCTCGA"
+- > Nos indica el fin de la palabra o cadena, seria TCCA>, aceptaría "ACTTCCA", pero no "AACCTGTC"
+- ^ Igual que los anteriores para el inicio de una línea
+- $ Final de una línea
+
+> En este caso usaremos el archivo tomatesverdes.fasta ubicado en `BioinfinvRepro-master/Unidad1/Prac_Uni1/Tomates`
+>
+> Es un archivo FASTA que posee 5 secuencias de DNA y el encabezado de las secuencias es `>gi|156629009|gb|EF438952.1| Physalis philadelphica isolate P059 maturase K (matK) gene, partial cds; chloroplast`
+
+En este caso con `grep` podemos encontrar y obtener información de diferentes archivos aún más grandes que el archivo `tomatesverdes.fasta`
+
+- Con `grep` a secas y si le señalamos algún carácter entre comillas podemos buscar u obtener la información que contenga ese carácter
+
+> En el caso de buscar los encabezados de `jitomate.fasta` tenemos que son solo 3 secuencias y posee el siguiente encabezado `>gi|385137316|gb|JQ412261.1| Solanum lycopersicum voucher BS0156 maturase K (matK) gene, partial cds; chloroplast`
+
+- `grep -c` nos permite poder ver las líneas que presentan el carácter seleccionado que va entre comillas `$grep -c ">" (nombre del archivo)` en este caso nos podría mostrar cuantas líneas hay y estas corresponderían a las secuencias que hay del gen en concreto
+
+- `grep -l` nos enlista los archivos en los cuales se encunetran la expresión buscada, pero no nos muestra las líneas
+
+> Sí ocupamos `$grep -l Physalis *.fasta` nos muestra los siguientes archivos `tomates.fasta` y `tomatesverdes.fasta`
+
+- `grep -i` nos permite buscar sin necesidad de preocuparnos por las mayúsculas/minúsculas
+
+> `$grep -l physalis *.fasta` no nos va a mostrar ningún resultado ya que los nombres están escritos con mayúsculas, por eso al agregar el flag `-i`. Seria `$grep -li physalis *.fasta` nos mostraría los mismos que vimos anteriormente
+
+- `grep -w` nos permite buscar palabras completas, es decir nos muestra exactamente lo que indicamos
+
+> si usamos en comando `$grep iso tomatesverdes.fasta` nos va a mostrar todos los datos que contengan la sigla "iso" pero al usar `grep -w iso tomatesverdes.fasta` no nos va a mostrar nada porque no hay ningún dato que tenga en su nombre solo iso ya que son `isolate`
+
+- `grep -E` nos permite encontrar una expresión regular completa. Es útil usarlo con el flag `-o` para mostrar solo la parte del texto encontrado que cumple con la expresión regular
+
+> para buscar con `grep` y obtener el nombre la especie sin "|" ocupamos `$grep -Eo (el nombre de la especie`
+ 
+> Tip: si queremos buscar los nombres de las secuencias de más de un archivo ocupamos el mismo `grep -Eo` pero esta vez agregamos los nombres de ambos archivos, por ejemplo con los archivos `tomatesverdes.fasta` y `jitomate.fasta` ocupamos el siguiente comando `$grep -Eo "\| \w+ \w+" tomatesverdes.fasta jitomate.fasta` y si queremos guardar los nombres en un nuevo archivo ocupamos el comando `>` de la siguiente manera `$grep -Eo "\| \w+ \w+" tomatesverdes.fasta jitomate.fasta > mezclas.txt`, de esta manera tendremos un archivo de texto que contenga los nombres de las especies de las diferentes secuencias contenidas en ambos archivos
+
+> **Consular como hacer las `secsIDs`**
+
+## Redirección con bash
+
+- `>` nos permite llevar uno o más archivos a un archivo en específico o uno nuevo
+
+> Tip: Sí utilizas el `>` y el archivo ya existe este se va a eliminar, pero para evitar esto hay que usar `>>` lo que va a permitir que se agreguen los datos al final
+
+> Nota: Utilizamos `sed` para poder sustituir "Solanum Lycopersicum" del archivo tomates.fasta por "jitomate" se hace con el siguiente comando `$sed 's/Solanum lycopersicum/jitomate' tomates.fasta`
+
+- `|` la utilización de este comando nos permite utilizar otros comandos a la vez
+> Por ejemplo `$ls | wc -l` para que nos indique el número de los archivos que hay
+>  
+> O usar el `$cat *.fam | more` nos muestra de forma conjunta todos los archivos `.fam` y la información completa
+
+> Tip: Sí utilizas el comando `history` te muestra los comandos que has escribido y si lo combinas con `|` y `grep` puedes encontrar cuantas veces se ha usado lo que busques, por ejemplo `$history | grep -Eo "less"` y nos muestra cuantas veces hemos usado el comando `less` en el historial
+
 
 
 
