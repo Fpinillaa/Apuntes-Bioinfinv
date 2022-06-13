@@ -1,5 +1,8 @@
 # Introducción a R con un enfoque bioinformático
 
+
+![](R.jpeg)              
+
 `R` es un lenguaje de programación y un ambiente de cómputo altamente utilizado en bioestadística y bioinformática, el cual posee ciertas características que lo vuelven sumamente accesible y compatible con el trabajo y la reproducibilidad de la información planteada en él.
 
 Algunas de estas cualidades son
