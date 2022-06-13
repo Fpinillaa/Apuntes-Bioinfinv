@@ -12,7 +12,7 @@ Es el formato en el que se escribe este y otros repositorios el cual nos permite
 
 Es un programa que sirve para llevar el control de versiones de un proyecto informático.
 
-Este programa posee la versión online `Github` y una versión de escritorio vinculada a la versión en línea [para más información](https://github.com/AliciaMstt/BioinfinvRepro/blob/master/Unidad2/Unidad2_Organizacion_proyecto_bioinf.md), es una buena forma de empezar a entender `git` de escritorio además de poseer algunos enlaces a otras páginas que explican más a profundo `git`.
+Este programa posee la versión online `Github` y una versión de escritorio vinculada a la versión en línea ([para más información](https://github.com/AliciaMstt/BioinfinvRepro/blob/master/Unidad2/Unidad2_Organizacion_proyecto_bioinf.md)), es una buena forma de empezar a entender `git` de escritorio además de poseer algunos enlaces a otras páginas que explican más a profundo `git`.
 
 ## Github
 
