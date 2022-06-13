@@ -1,5 +1,5 @@
 # Repositorio de apuntes
-Repositorio con anotaciones para el repositorio [Bioinfinv](https://github.com/ravuch/BioinfinvRepro/blob/master/Unidad1/Unidad1_Intro_programacion.md) 
+Repositorio con anotaciones para el repositorio [Bioinfinv_Unidad1](https://github.com/ravuch/BioinfinvRepro/blob/master/Unidad1/Unidad1_Intro_programacion.md) 
 
 En la primera parte realizaremos las tareas referentes a la Unidad 1, en la que trabajaremos en el terminal (es un acercamiento a como ocupar algunos comandos del terminal)
 
