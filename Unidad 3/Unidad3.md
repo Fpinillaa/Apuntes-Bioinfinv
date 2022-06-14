@@ -195,3 +195,15 @@ x<-give_i_line("../data/indicadores.txt", i=2)
 La función también la podemos guardar como un ***Script***, lo cual nos permitirá llamarla desde otro script utilizando `source()`
 
 Además estas funciones seran almacenadas en el "Enviroment" del `R` 
+
+![](funtions.png)
+
+## Manipulación y limpieza de los datos en R
+
+El paquete `dplyr` es muy útil para poder hacer operaciones de transformación de datos (para obtener más información revisar las funciones del paquete con `?dplyr` en `R`)
+
+Para poder utilizar los datos que hemos obtenidos es necesario muchas veces limpiar y manipular estos datos y para poder revisarlos los dejo en notas apartes tomadas desde el repositorio base ([BioinfinvRepro](https://github.com/ravuch/BioinfinvRepro)) [Restructuración de datos](https://github.com/AliciaMstt/BioinfinvRepro/blob/master/Unidad3/Limpieza_de_datos.Rmd) y [Divide-aplica-combina](https://github.com/AliciaMstt/BioinfinvRepro/blob/master/Unidad3/Divide-aplica-combina.html)
+
+## Bioconductor
+
+Como se mencionó anteriormente [CRAN](https://cran.r-project.org/) no es el único repositorio de paquetes, si no que al ser un programa de libre acceso y de código abierto permite a otros investigadores desarrollar libremente sus funciones y posteriormente paquetes, uno de estos repositorios es [Bioconductor](https://www.bioconductor.org/) en donde tenemos paquetes como [ggtree](https://www.bioconductor.org/packages/release/bioc/vignettes/ggtree/inst/doc/ggtree.html) el cual permite la creación de árboles filogenéticos o como el paquete [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html)
