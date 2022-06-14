@@ -126,7 +126,72 @@ El comando `read.algo` es el encargado de permitirte cargar archivos en `R`, los
 
 ##### Working directory
 
-Para cargar archivos y guardar tus scripts lo altamente recomendable es guardar o setear la sesión, esto te permite poder seleccionar una carpeta de trabajo donde almacenar todo, lo que te genera un lugar de trabajo más comodo y organizado
+Para cargar archivos y guardar tus scripts lo altamente recomendable es guardar o settear la sesión, esto te permite poder seleccionar una carpeta de trabajo donde almacenar todo, lo que te genera un lugar de trabajo más cómodo y organizado
 
-Esto se puede realizar con el comando `setwd()` que podremos dar la direccion de donde queremos que nuestra sesión este seteada y para poder saber a donde tenemos que llegar podemos usar `getwd()` para saber donde estamos. Otra forma de hacerlo es de manera manual 
+Esto se puede realizar con el comando `setwd()` que podremos dar la dirección de donde queremos que nuestra sesión este seteada y para poder saber a donde tenemos que llegar podemos usar `getwd()` para saber dónde estamos. Otra forma de hacerlo es de manera manual 
 
+![](sesion.png)
+
+![](setsesion.png)
+
+
+## For loops 
+
+Al igual que en `bash` se pueden utilizar los for loops con la siguiente escritura `for (variable in vector) {commands}`
+
+lo que se veria asi
+```{r}
+> h3<- c(3:10)
+> for (d in h3) { print(paste(d, "ratones comían comida"))}
+[1] "3 ratones comían comida"
+[1] "4 ratones comían comida"
+[1] "5 ratones comían comida"
+[1] "6 ratones comían comida"
+[1] "7 ratones comían comida"
+[1] "8 ratones comían comida"
+[1] "9 ratones comían comida"
+[1] "10 ratones comían comida"
+```
+Para más opciones para los for loop revisar este [tutorial](https://www.datacamp.com/tutorial/tutorial-on-loops-in-r)
+
+## Funciones Propias
+
+Las cuales poseen el siguiente esqueleto de escritura:
+
+```{r}
+myfunction <- function(arg1, arg2, ... ){
+statements
+return(object)
+}
+```
+> Tip: El comando `return` es sumamente necesario ya que nos permite visualizar el resultado de lo que queremos que la función haga
+
+Como alternativa al `return` puedes asignar el nombre del objeto, como cuando uno lo solicita en la terminar 
+
+Si quieres observar resultado y que este no se guarde, utiliza `print()`, este se agrega en la zona debajo de la función
+
+```{r}
+give_i_line<- function(file, i){
+  ## Arguments
+  # file = path to desired file with the indicadores, must be tab delimited and do NOT have a header
+  # i = number of line of file we want to print
+
+  ## Function
+  # read indicadores list
+  indicador<-read.delim(file, header=FALSE, quote="", stringsAsFactors=FALSE)
+
+  print(i)
+
+  # give text of the i line of the file  
+  x<-indicador[i,1]
+  x
+}
+
+give_i_line("../data/indicadores.txt", i=2)
+x<-give_i_line("../data/indicadores.txt", i=2)
+
+```
+
+La función también la podemos guardar como un ***Script***, lo cual nos permitirá llamarla desde otro script utilizando `source()`
+
+Además estas funciones seran almacenadas en el "Enviroment" del `R` 
