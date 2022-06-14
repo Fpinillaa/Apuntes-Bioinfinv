@@ -111,4 +111,22 @@ Para poder utilizar los paquetes dentro de `R` se deben instalar, para lo cual u
 
 Todo esto tambien se puede hacer directamente desde la consola en la siguiente parte
 
+![](packages.png)
+
+Donde como se marca podemos instalar los paquetes buscando directamente desde CRAN, y luego de esto tendremos que seleccionar en el recuadro para que el paquete que queramos se active y podamos utilizar sus comandos
+
+> Tip: 
+> - Cuando comienzas a armar tu script es bueno dejar instalados y activados los paquetes que vayas a utilizar desde el comienzo
+> - Un comando que es de gran utilidad cuando se está estudiando un paquete es `?nombre_del_paquete o comando`, con este comando eres dirigido a `help` donde te mostrara el manual del paquete o del comando
+> - Es bueno revisar los paquetes ya que hay algunos paquetes que poseen comandos iguales que pueden generar funciones diferentes y esto te puede salir como warning
+
+#### Cargar archivos
+
+El comando `read.algo` es el encargado de permitirte cargar archivos en `R`, los archivos que puede leer `R` son muchos y hay paquetes ademas que te permiten leer diferentes tipos de archivos si es que R básico no lo posee, tenemos como ejemplo el `read.delim` que te permite cargar archivos de texto con filas y columnas o el `read.plink` del paquete snpMatrix
+
+##### Working directory
+
+Para cargar archivos y guardar tus scripts lo altamente recomendable es guardar o setear la sesión, esto te permite poder seleccionar una carpeta de trabajo donde almacenar todo, lo que te genera un lugar de trabajo más comodo y organizado
+
+Esto se puede realizar con el comando `setwd()` que podremos dar la direccion de donde queremos que nuestra sesión este seteada y para poder saber a donde tenemos que llegar podemos usar `getwd()` para saber donde estamos. Otra forma de hacerlo es de manera manual 
 
