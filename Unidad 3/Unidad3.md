@@ -22,3 +22,93 @@ Para poder utilizar `R` se debe descargar ([aquí](https://cran.r-project.org/))
 ##### RStudio
 
 En el software se trabaja en un script (al igual que en la terminal) y este script es un archivo de texto plano el cual se puede repetir y es permanente y se almacena como un archivo `.R` y este editor de texto te permite poder escribir los comandos a utilizar, además este software posee diferentes zonas en las que puedes observar tanto el ambiente (donde se guardan tus frames y diferentes variables), historial, la zona de ayuda y la revisión de los diferentes plots
+
+![](RStudioS.png)
+
+> Tip: uno de los shortcuts útiles en RStudio: 
+> - `command/ctrl + enter` para poder enviar el código a la consola
+> - `ctrl + 2` para mover el cursor a la consola
+
+### Rmarkdown
+
+Es un formato que te permite crear documentos o reportes, en los que al mismo tiempo puedes guardar y ejecutar el código, pero para usarlo debes intalar el Rmarkdown
+
+````{r}
+install.packages("rmarkdown")
+````
+Con esto podrás crear un archivo `.Rmd`, en el cual tiene 3 tipos de contenidos:
+- ``(---)`` encabezado
+- ``(```)`` código
+- `(Markdown)` texto simple
+
+Las líneas de código se pueden ejecutar de forma independiente e interactiva y los resultados del código escrito se verá debajo de éste.
+
+Este formato de escritura puede tener diferentes formas de exportación o salida que son: HTML, Documentos Interactivos, Word, PDF, entre [otros](https://rmarkdown.rstudio.com/formats.html)
+
+## Funciones básicas de R
+
+Resumen de algunas expresiones básicas:
+- Expresiones matemáticas: `2+3`
+- Strings de texto: `"Holaaa casa"`
+- Valores Lógicos: 
+ ```{r}
+> 1<5
+[1] TRUE
+```
+- Crear una variable: `a<-6`
+- Funciones: comandos que nos permiten hacer acciones específicas, estos están con el paquete básico de `R` (también se pueden obtener nuevos con paquetes de la comunidad) Ejemplo: `sum()`, `mean()`, `help()`
+
+> ```{r}
+> #Crear una variable y súmarlo a otra variable
+> x<- log10(50)
+> z<- 5
+> x+z
+> [1] 6.69897
+> ```
+
+##### Vectores: 
+- Vecto `c(7,8,9,10)`, `c(1:20)`
+- Acceso a un elemnto de un vector `[]`
+
+##### Matrices
+- Matrices `matrix()`
+```{r}
+> asd<-matrix(c(2,3,4,5),1,4)
+     [,1] [,2] [,3] [,4]
+[1,]    2    3    4    5
+> asdf<-matrix(c(1:20),2,10)
+     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+[1,]    1    3    5    7    9   11   13   15   17    19
+[2,]    2    4    6    8   10   12   14   16   18    20
+```
+- Acceso a elementos de una matriz `[ , ]`
+```{r}
+> asdf[2,3]
+[1] 6
+```
+##### Data frames
+- Data frame `data.frame(x,y)`
+```{r}
+> data1<-data.frame(x=c("a","b","c"), y= 1:3)
+> data1
+  x y
+1 a 1
+2 b 2
+3 c 3
+```
+- Acceso a elemento de un data frame `[ , ]`, `$`
+```{r}
+> data1[2,x]
+[1] "b"
+> data1$x
+[1] "a" "b" "c"
+```
+## Trabajar con paquetes externos
+
+`R` por sí solo posee funciones más básicas, pero el verdadero valor agregado es utilización de paquetes creados por la comunidad, los cuales son de gran ayuda para realizar análisis de forma más práctica, sencilla o simplemente para poder desarrollar gráficos más bonitos. Estos paquetes se pueden encontrar en [CRAN](https://cran.r-project.org/) o se pueden obtener paquetes de utilidad al buscarlos en Google
+
+Para poder utilizar los paquetes dentro de `R` se deben instalar, para lo cual usamos `install.packages("nombre_del_paquete")`, éste paso puede demorar un poco ya que requiere instalar el paquete y para poder utilizar los paquetes debemos activarlos o llamarlos `library(nombre_del_paquete)`.
+
+Todo esto tambien se puede hacer directamente desde la consola en la siguiente parte
+
+
