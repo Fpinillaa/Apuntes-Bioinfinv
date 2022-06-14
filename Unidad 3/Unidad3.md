@@ -15,8 +15,10 @@ Algunas de estas cualidades son
 
 ### Desargar R y RStudio
 
-
-
-
-
 Para poder utilizar `R` se debe descargar ([aquí](https://cran.r-project.org/)), esta descarga contiene los datos y utilidades de `R` básico. Posterior a la descarga de `R` se recomienda descargar `RStudio` ([aquí](https://www.rstudio.com/products/rstudio/download/)), él cual es un ambiente de desarrollo integrado de `R` que posee un editor de texto, consola y herramientas para administrar el espacio de trabajo.
+
+> Tip: Para activar `R` en la terminal es necesario usar el comando `$Rscript` y podemos distinguir que ya estamos dentro de `R` porque la consola va a mostrar `>`
+
+##### RStudio
+
+En el software se trabaja en un script (al igual que en la terminal) y este script es un archivo de texto plano el cual se puede repetir y es permanente y se almacena como un archivo `.R` y este editor de texto te permite poder escribir los comandos a utilizar, además este software posee diferentes zonas en las que puedes observar tanto el ambiente (donde se guardan tus frames y diferentes variables), historial, la zona de ayuda y la revisión de los diferentes plots
