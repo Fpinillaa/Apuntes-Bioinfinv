@@ -10,7 +10,7 @@ Para más información revisar se aconseja revisar los diferentes software en lo
 
 Estos software poseen documentación especializada, la cual comprende del manual y diferentes tutoriales para los diferentes programas, cabe destacar que los manuales están presentes para todos los software no así los tutoriales que pueden o no tener estos software.
 
-En el caso de los manuales estos se pueden obtener directamente desde el terminal `(>_)` con el comando `man (nombre_del_software)` o directamente desde la web. Estos manuales son iguales a los manuales de los diferentes paquetes tanto de `bash` como de `R`, en el cual nos presentan una descripción del software, los usos de sus comandos y unos ejemplos breves.
+En el caso de los manuales estos se pueden obtener directamente desde el terminal `(>_)` con el comando `$ man (nombre_del_software)` o directamente desde la web. Estos manuales son iguales a los manuales de los diferentes paquetes tanto de `bash` como de `R`, en el cual nos presentan una descripción del software, los usos de sus comandos y unos ejemplos breves.
 
 ***Terminal***
 ![](man_vcf.png)
@@ -30,6 +30,10 @@ En este caso nos vamos a centrar en [VCFtools](http://vcftools.github.io/index.h
 
 2) En la página nos centraremos en buscar la seccion que diga ***Download*** (en algunos puede aparecer como ***Install***), esto te llevara a descargar un archivo `.tar` o un comando para poder bajar el programa desde GitHub
 
+![](vcfdescarga.png)
 
+3) Bajamos el codígo.
+
+Al bajarlo podremos visualizar los contenidos del archivo `.tar` podremos visualizar diferentes archivos:
 
 
