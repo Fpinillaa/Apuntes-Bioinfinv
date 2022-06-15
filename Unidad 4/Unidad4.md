@@ -36,4 +36,8 @@ En este caso nos vamos a centrar en [VCFtools](http://vcftools.github.io/index.h
 
 Al bajarlo podremos visualizar los contenidos del archivo `.tar` podremos visualizar diferentes archivos:
 
+![](vcfread.png)
+
+4) En el archivo `.tar` como se muestra vemos que contiene un archivo de texto llamado ***README*** (este archivo también podría ser un Markdown). Este es el primer archivo que se debe revisar ya que en el vienen las instrucciones de instalación y los pasos a seguir
+
 
