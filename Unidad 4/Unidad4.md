@@ -10,4 +10,10 @@ Para más información revisar se aconseja revisar los diferentes software en lo
 
 Estos software poseen documentación especializada la cual comprende del manual y diferentes tutoriales para los diferentes programas.
 
-En el caso de los manuales estos se pueden obtener directamente desde el terminal `(>_)` con el comando `man (nombre_del_software)` o directamente desde la web. Estos manuales son iguales a los manuales de los diferentes paquetes tanto de `bash` como de `R`, en el cual nos presentan una descripción del software, los usos de sus comandos y unos ejemplos breves. 
+En el caso de los manuales estos se pueden obtener directamente desde el terminal `(>_)` con el comando `man (nombre_del_software)` o directamente desde la web. Estos manuales son iguales a los manuales de los diferentes paquetes tanto de `bash` como de `R`, en el cual nos presentan una descripción del software, los usos de sus comandos y unos ejemplos breves.
+
+Terminal
+![](man_vcf.png)
+
+Web
+![](man_vcf_inter.png)
