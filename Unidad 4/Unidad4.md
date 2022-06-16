@@ -130,3 +130,79 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 En Mac también se puede observar en la barra de tareas superior 
 
+![](docker_run.png)
+
+### Funcionamiento básico de Docker
+
+La forma de poder utilizar los comandos necesitan el siguiente modo de escritura `$ docker (comando)`. Por ejemplo al usar `$ docker --help`
+
+```{bash}
+% docker --help
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/Users/franciscopinillariquelme/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/franciscopinillariquelme/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/franciscopinillariquelme/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/franciscopinillariquelme/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx (Docker Inc., v0.8.2)
+  compose*    Docker Compose (Docker Inc., v2.6.0)
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+```
+
+Los comandos con más importancia de `Dcoker` son:
+
+- `pull` bajar una imagen, pero solo una vez
+
+```{bash}
+% docker pull ubuntu:14.04
+14.04: Pulling from library/ubuntu
+d1a5a1e51f25: Pull complete 
+e5fc464c2dc9: Pull complete 
+561f253b7549: Pull complete 
+Digest: sha256:96a36dd3bcd8f149fa9874c4e28c35c01f715b3e5f8f1a8e06b45887619bf43b
+Status: Downloaded newer image for ubuntu:14.04
+docker.io/library/ubuntu:14.04
+```
+- `images` con este podremos revisar lo hayamos bajado y comprobar que lo que bajamos fue lo deseado
+
+```{bash}
+% docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+alpine/git    latest    19177234a769   3 weeks ago    38MB
+hello-world   latest    46331d942d63   2 months ago   9.14kB
+ubuntu        14.04     7304c635fe52   8 months ago   187MB
+```
+
+- `run`
+
+
+
+
+
+
+
+
+- `exit`
+- `stop`
+- `restart`
+- `exec`
+- `rm`
+- `rmi`
+
