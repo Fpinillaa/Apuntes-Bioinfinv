@@ -1,4 +1,4 @@
-# Repositorio de apuntes
+# Acercándonos al uso del terminal y {bash}
 Repositorio con anotaciones para el repositorio [Bioinfinv_Unidad1](https://github.com/ravuch/BioinfinvRepro/blob/master/Unidad1/Unidad1_Intro_programacion.md) 
 
 En la primera parte realizaremos las tareas referentes a la Unidad 1, en la que trabajaremos en el terminal (es un acercamiento a como ocupar algunos comandos del terminal)
@@ -269,5 +269,3 @@ A veces los array presentan problemas, pero como los datos son tantos es muy dif
 1.- `grep -Eo "\w+_[0-9]*" nuevos_final.fam > nombres_nuevosfinal.txt` con esto podemos crear un archivo .txt con los combres de los datos de `nuevos_final.fam`
 
 2.- `for i in {A..D}; do mkdir Pob$i; done` y para eliminarlos `rm -r Pob{A..D}`, pero para poder armar un archivo que tenga nombre Pob{A..D} y que dentro de el contenga un archivo de texto que se llame igula que el directorio hay que ocupar el siguiente scrip `for i in {A..D}; do mkdir -p Pob$i/Pob$i.txt; done`
-
-3.-
