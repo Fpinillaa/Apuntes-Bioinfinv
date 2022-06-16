@@ -61,7 +61,7 @@ Al bajarlo podremos visualizar los contenidos del archivo `.tar` podremos visual
 
 #### Como lo instale
 
-En mi caso la instalación resulto ser no tan simple, debido a que el equipo que ocupo posee `MacOS Monterrey` y al parecer a este le falta algunos comandos por lo que los tuve que instalar de manera externa.
+En mi caso la instalación resulto ser no tan simple, debido a que el equipo que ocupo posee `MacOS Monterrey` y al parecer a este le falta algunos comandos, por lo que los tuve que instalar de manera externa.
 
 Por lo que el consejo dado por el [BioinfinvRepro](https://github.com/ravuch/BioinfinvRepro) al comienzo es sumamente importante "siempre buscar en foros".
 
