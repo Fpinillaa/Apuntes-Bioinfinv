@@ -109,26 +109,26 @@ En este caso este comando es necesario separarlo por lo grande que es y las util
 
 #### Operadores
 
-- [..] Nos sirve para generar una lista de caracteres, `[Bb]iology10[1234]` nos buscara aquellos que tengan la palabra biology como Biology, además de los que están enumerados 101, 102, 103, 104. Seria así `biology102` o `Biology104`
-- [^..] Lista de caracteres que no queremos buscar 
-- \w Nos permite buscar cualquier "carácter de palabra"
-- \W Nos permite buscar cualquier "carácter **NO** palabra"
-- \ Nos permite buscar los metacarateres ya que estos no se pueden usar por si solos, al usar esto se conoce como "escapar"
-- | Significa "or" acepta un patrón u otro. p(err|at)o lo que nos va a permitir buscar tanto "perro" como "pato", a este símbolo se conoce como bash también
-- (...) Grupos, que nos permite recuperar partes del patrón encontrado para ser usadas después
+- ``[..]`` Nos sirve para generar una lista de caracteres, `[Bb]iology10[1234]` nos buscara aquellos que tengan la palabra biology como Biology, además de los que están enumerados 101, 102, 103, 104. Seria así `biology102` o `Biology104`
+- ``[^..]`` Lista de caracteres que no queremos buscar 
+- ``\w`` Nos permite buscar cualquier "carácter de palabra"
+- ``\W`` Nos permite buscar cualquier "carácter **NO** palabra"
+- ``\`` Nos permite buscar los metacarateres ya que estos no se pueden usar por si solos, al usar esto se conoce como "escapar"
+- ``|`` Significa "or" acepta un patrón u otro. p(err|at)o lo que nos va a permitir buscar tanto "perro" como "pato", a este símbolo se conoce como bash también
+- ``(...)`` Grupos, que nos permite recuperar partes del patrón encontrado para ser usadas después
 
 #### Cuantificadores
-- * Cero o más ocurrencias del carácter anterior, 10*, va a aceptar "1", "10", "100", etc
-- + Una o más ocurrencias del carácter anterior en este caso va a encontrar los mismos caracteres, pero no el "1" -> 10+ va a aceptar "10", "100", "1000", etc
-- ? Van a aceptar la ocurrencia del carácter anterior, `patos?`, nos va a dar la cadena "pato" y "patos"
-- {n,} Mínimo n veces el carácter anterior, seria 10{5,}, va a aceptar las cadenas "100000", "1000000", etc
-- {n,m} Entre n y m veces el carácter anterior, seria 10{2,5}, va a aceptar las cadenas "100" y "10000"
+- ``* ``Cero o más ocurrencias del carácter anterior, 10*, va a aceptar "1", "10", "100", etc
+- ``+`` Una o más ocurrencias del carácter anterior en este caso va a encontrar los mismos caracteres, pero no el "1" -> 10+ va a aceptar "10", "100", "1000", etc
+- ``?`` Van a aceptar la ocurrencia del carácter anterior, `patos?`, nos va a dar la cadena "pato" y "patos"
+- ``{n,}`` Mínimo n veces el carácter anterior, seria 10{5,}, va a aceptar las cadenas "100000", "1000000", etc
+- ``{n,m}`` Entre n y m veces el carácter anterior, seria 10{2,5}, va a aceptar las cadenas "100" y "10000"
 
 #### Posicionadores
-- < Nos indica el inicio de palabra, seria <GAAA, aceptaría "GAAACCTT", pero no "CCTCGA"
-- > Nos indica el fin de la palabra o cadena, seria TCCA>, aceptaría "ACTTCCA", pero no "AACCTGTC"
-- ^ Igual que los anteriores para el inicio de una línea
-- $ Final de una línea
+- ``< ``Nos indica el inicio de palabra, seria <GAAA, aceptaría "GAAACCTT", pero no "CCTCGA"
+- ``>`` Nos indica el fin de la palabra o cadena, seria TCCA>, aceptaría "ACTTCCA", pero no "AACCTGTC"
+- ``^`` Igual que los anteriores para el inicio de una línea
+- ``$`` Final de una línea
 
 > En este caso usaremos el archivo tomatesverdes.fasta ubicado en `BioinfinvRepro-master/Unidad1/Prac_Uni1/Tomates`
 >
