@@ -206,13 +206,24 @@ root@0631f8e189a5:/#
 ```
 > Tip: en este caso tenemos que el cambio del signo para anotar los comandos se presenta como `#` el cual nos dice que tenemos permiso de administrador a diferencia del `$` que es de usuario
 
+> Dato: 
+> - Esta versión de Ubuntu no es la más actual así que para actualizarla se puede correr `# apt-get update`
+> - Ahora que tenemos actualizado podremos instalar diferentes herramientas con el comando `# apt-get install (nombre_de_la_herramienta)` 
 
+- `exit` nos sirve para poder salir de la imagen en la que estamos trabajando y volver al `Docker` 
 
+- `ps -a` nos va a permitir ver los contenedores que poseemos
 
+```{bash}
+% docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                      PORTS     NAMES
+0631f8e189a5   ubuntu        "bash"                   12 minutes ago   Exited (0) 30 seconds ago             keen_rhodes
+7ab1e9f06b69   ubuntu        "bash"                   13 minutes ago   Exited (0) 13 minutes ago             suspicious_wiles
+c4781ba40b9a   hello-world   "/hello"                 2 hours ago      Exited (0) 2 hours ago                condescending_pascal
+7eff9d3f66fb   hello-world   "/hello"                 14 hours ago     Exited (0) 14 hours ago               eager_jones
+38450583b4db   alpine/git    "git clone https://g…"   15 hours ago     Exited (0) 15 hours ago               repo
+```
 
-
-
-- `exit`
 - `stop`
 - `restart`
 - `exec`
