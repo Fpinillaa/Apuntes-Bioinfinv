@@ -223,10 +223,35 @@ c4781ba40b9a   hello-world   "/hello"                 2 hours ago      Exited (0
 7eff9d3f66fb   hello-world   "/hello"                 14 hours ago     Exited (0) 14 hours ago               eager_jones
 38450583b4db   alpine/git    "git clone https://g…"   15 hours ago     Exited (0) 15 hours ago               repo
 ```
+- `start` nos permitirá dar la partida a nuestro contenedor, el cual se realiza con el ID del contenedor
 
-- `stop`
-- `restart`
-- `exec`
-- `rm`
-- `rmi`
+```{bash}
+% docker start 0631f8e189a5
+0631f8e189a5
+```
+> Tip: usar `$ docker ps` nos permite ver los contenedores activos
+
+- `exec` podremos volver a entrar a nuestro contenedor
+
+```{bash}
+% docker exec -it 0631f8e189a5 bash
+root@0631f8e189a5:/# 
+```
+
+> Dato: si ocupamos `# ls` podremos ver que los cambios hechos se mantienen aun dentro del contenedor
+
+- `stop` nos sirve para cuando salgamos del contenedor poder detenerlo
+
+```{bash}
+root@0631f8e189a5:/# exit
+exit
+% docker stop 0631f8e189a5
+0631f8e189a5
+```
+
+> Tip: 
+> - Si ocupamos `$ docker ps` veremos que no hay ningún contenedor activo
+> - Además si queremos que nuestro contenedor corra en segundo plano desde que iniciamos podemos usar `$ docker run -dit (nombre del contenedor) ( comando )` en este caso el flag `-d` nos permite esta acción
+
+
 
