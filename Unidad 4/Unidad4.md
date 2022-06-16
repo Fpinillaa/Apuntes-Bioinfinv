@@ -190,8 +190,21 @@ hello-world   latest    46331d942d63   2 months ago   9.14kB
 ubuntu        14.04     7304c635fe52   8 months ago   187MB
 ```
 
-- `run`
+- `run` nos permite cargar la imagen dentro de un contenedor
 
+```{bash}
+% docker run -it ubuntu bash
+root@0631f8e189a5:/# ls
+bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@0631f8e189a5:/# mkdir Prueba
+root@0631f8e189a5:/# ls
+Prueba  bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@0631f8e189a5:/# mkdir Hola
+root@0631f8e189a5:/# ls
+Hola  Prueba  bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@0631f8e189a5:/# 
+```
+> Tip: en este caso tenemos que el cambio del signo para anotar los comandos se presenta como `#` el cual nos dice que tenemos permiso de administrador a diferencia del `$` que es de usuario
 
 
 
