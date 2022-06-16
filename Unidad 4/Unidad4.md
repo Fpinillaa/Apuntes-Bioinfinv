@@ -365,4 +365,66 @@ Todo esto se hace atraves de un dockerfile el cual es un script que instala y de
 
 Biocontainers es una comunidad que crea imagenes para instalar software la cual puedes revisar [aquí](https://biocontainers.pro/)
 
-###
+### Tip: 
+- Borrar automáticamente un contenedor cuando se termina de correr, ya que stos ocupan espacios en el disco. Además cada vez que se hace `docker run` para una imagen se genera un contenedor. 
+- En el caso de ocupar las imagenes de Biocontainers, para eso puedes usar en el comando `run` el flag `-- rm` para que asi al salir del conetenedor este automaticamente se elimine.
+- Ademas puedes agregar comandos para que activen la accion de cerrar y eliminar el contenedor `-c exit`.
+
+```{bash}
+% docker run --rm biocontainers/fastxtools:0.0.14 fastq_to_fasta -h -c exit
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+usage: fastq_to_fasta [-h] [-r] [-n] [-v] [-z] [-i INFILE] [-o OUTFILE]
+Part of FASTX Toolkit 0.0.14 by A. Gordon (assafgordon@gmail.com)
+
+   [-h]         = This helpful help screen.
+   [-r]         = Rename sequence identifiers to numbers.
+   [-n]         = keep sequences with unknown (N) nucleotides.
+                  Default is to discard such sequences.
+   [-v]         = Verbose - report number of sequences.
+                  If [-o] is specified,  report will be printed to STDOUT.
+                  If [-o] is not specified (and output goes to STDOUT),
+                  report will be printed to STDERR.
+   [-z]         = Compress output with GZIP.
+   [-i INFILE]  = FASTA/Q input file. default is STDIN.
+   [-o OUTFILE] = FASTA output file. default is STDOUT.
+
+franciscopinillariquelme@MacBook-Air-de-Francisco ~ % docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED             STATUS                     PORTS     NAMES
+7dc39ca4b71d   ubuntu        "bash"                   About an hour ago   Up About an hour                     romantic_galileo
+0631f8e189a5   ubuntu        "bash"                   2 hours ago         Exited (137) 2 hours ago             keen_rhodes
+7ab1e9f06b69   ubuntu        "bash"                   2 hours ago         Exited (0) 2 hours ago               suspicious_wiles
+c4781ba40b9a   hello-world   "/hello"                 4 hours ago         Exited (0) 4 hours ago               condescending_pascal
+7eff9d3f66fb   hello-world   "/hello"                 16 hours ago        Exited (0) 16 hours ago              eager_jones
+38450583b4db   alpine/git    "git clone https://g…"   17 hours ago        Exited (0) 17 hours ago              repo
+```
+Vemos que el contenedor `biocontainers/fastxtools:0.0.14 fastq_to_fasta` no aparece
+
+```{bash}
+ % docker run --rm biocontainers/fastxtools:0.0.14 bash -c "fastq_to_fasta -h ; echo hola mundo"
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+usage: fastq_to_fasta [-h] [-r] [-n] [-v] [-z] [-i INFILE] [-o OUTFILE]
+Part of FASTX Toolkit 0.0.14 by A. Gordon (assafgordon@gmail.com)
+
+   [-h]         = This helpful help screen.
+   [-r]         = Rename sequence identifiers to numbers.
+   [-n]         = keep sequences with unknown (N) nucleotides.
+                  Default is to discard such sequences.
+   [-v]         = Verbose - report number of sequences.
+                  If [-o] is specified,  report will be printed to STDOUT.
+                  If [-o] is not specified (and output goes to STDOUT),
+                  report will be printed to STDERR.
+   [-z]         = Compress output with GZIP.
+   [-i INFILE]  = FASTA/Q input file. default is STDIN.
+   [-o OUTFILE] = FASTA output file. default is STDOUT.
+
+hola mundo
+% docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED             STATUS                     PORTS     NAMES
+7dc39ca4b71d   ubuntu        "bash"                   About an hour ago   Up About an hour                     romantic_galileo
+0631f8e189a5   ubuntu        "bash"                   2 hours ago         Exited (137) 2 hours ago             keen_rhodes
+```
+En este caso vemos que corre el comando `hola mundo`, nos cierra el contendor y lo elimina
+
+> Dato: 
+> - El flag `-c` nos sirve para que corra más de un comando dentro del mismo contenedor y que solo estan unidos por `|`, `;`, entre otros.
+> - Sí se corre con `bash` más los comandos deseados entre " el sistema se saldrá automáticamente sin necesidad de decir `exit` al terminar de correr todos los comandos.
