@@ -251,7 +251,118 @@ exit
 
 > Tip: 
 > - Si ocupamos `$ docker ps` veremos que no hay ningún contenedor activo
-> - Además si queremos que nuestro contenedor corra en segundo plano desde que iniciamos podemos usar `$ docker run -dit (nombre del contenedor) ( comando )` en este caso el flag `-d` nos permite esta acción
+> - Además si queremos que nuestro contenedor corra en segundo plano desde que iniciamos podemos usar `$ docker run -dit (nombre del contenedor) (comando)` en este caso el flag `-d` nos permite esta acción
 
+#### Borrar contenedores e imágenes
 
+Para poder hacer algunas de estas 2 acciones se debe primero detener el contenedor (`$ docker stop CONTAINED-ID`) y luego borrar: Contenedor `$ docker rm CONATINED-ID` e imagen `$ docker rmi -f IMAGE-ID`
 
+#### Conectar un contenedor con un directorio en el OS nativo ("montar un volumen")
+
+Como primer paso debemos asegurarnos que tenemos una imagen de Ubuntu
+
+```{bash}
+docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    a7870fd478f4   9 days ago     69.2MB
+alpine/git    latest    19177234a769   3 weeks ago    38MB
+hello-world   latest    46331d942d63   2 months ago   9.14kB
+ubuntu        14.04     7304c635fe52   8 months ago   187MB
+```
+Luego hay que correr la imagen dentro de un contenedor, pero este contenedor va a estar montado en un directorio, lo cual es **Montar un volumen**, lo que permitirá que pueda entrar a los datos del directorio
+
+```{bash}
+% docker run -v /Users/franciscopinillariquelme/work/Tecnicas/BioinfinvRepro-master/Unidad4/Prac_Uni4/DatosContenedor1:/DatosContenedorEjerciciosClase -it ubuntu bash
+root@7dc39ca4b71d:/# 
+```
+> Tip: 
+> - `-v` nos indica la formación de un volumen
+> - `:/` nos indica como queremos que se llame nuestro directorio dentro del contenedor
+
+Ahora podremos explorar los datos que se encuentran en el archivo que tenemos en el OS nativo directo desde nuestro contenedor
+
+```{bash}
+root@7dc39ca4b71d:/# cd DatosContenedorEjerciciosClase
+root@7dc39ca4b71d:/DatosContenedorEjerciciosClase# ls
+datos
+root@7dc39ca4b71d:/DatosContenedorEjerciciosClase# cd datos
+root@7dc39ca4b71d:/DatosContenedorEjerciciosClase/datos# ls
+clean_human_data.fastq  human_Illumina_dataset.fastq
+root@7dc39ca4b71d:/DatosContenedorEjerciciosClase/datos# touch prueba
+root@7dc39ca4b71d:/DatosContenedorEjerciciosClase/datos# ls
+clean_human_data.fastq  human_Illumina_dataset.fastq  prueba
+root@7dc39ca4b71d:/DatosContenedorEjerciciosClase/datos# 
+```
+
+Ahora vamos a dejar correr el contenedor que creamos en el montamos nuestro volumen, para eso debemos:
+
+```{bash}
+% docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                        PORTS     NAMES
+7dc39ca4b71d   ubuntu        "bash"                   8 minutes ago    Exited (0) 16 seconds ago               romantic_galileo
+0631f8e189a5   ubuntu        "bash"                   53 minutes ago   Exited (137) 28 minutes ago             keen_rhodes
+7ab1e9f06b69   ubuntu        "bash"                   54 minutes ago   Exited (0) 54 minutes ago               suspicious_wiles
+c4781ba40b9a   hello-world   "/hello"                 3 hours ago      Exited (0) 3 hours ago                  condescending_pascal
+7eff9d3f66fb   hello-world   "/hello"                 15 hours ago     Exited (0) 15 hours ago                 eager_jones
+38450583b4db   alpine/git    "git clone https://g…"   16 hours ago     Exited (0) 16 hours ago                 repo
+% docker start 7dc39ca4b71d 
+7dc39ca4b71d
+% docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+7dc39ca4b71d   ubuntu    "bash"    12 minutes ago   Up 19 seconds             romantic_galileo
+% docker exec -it 7dc39ca4b71d /bin/bash 
+root@7dc39ca4b71d:/# 
+```
+
+Procedemos a actualizar el software de ubuntu de base y bajar algunos esenciales que no vienen en nuestra imagen de ubuntu básica
+
+```{bash}
+root@7dc39ca4b71d:/# apt-get update
+Get:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [109 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [99.8 kB]
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [110 kB]
+Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
+Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1758 kB]
+Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
+```
+
+```{bash}
+root@7dc39ca4b71d:/# apt-get install build-essential
+Reading package lists... Done
+Building dependency tree... Done
+```
+> Dato: la instalación de `build-essential` nos va a instalar muchos archivos y nos va a preguntar si deseamos seguir descargando ya que estos archivos ocuparan espacio en el disco por lo que debemos decir `Y`
+
+Ahora pasaremos a poner a prueba estos comandos para eso descargaremos el archivo `fastx_toolkit-0.0.14.tar.bz2` desde [FastX-Tools](http://hannonlab.cshl.edu/fastx_toolkit/download.html), el cual debemos dejar en la carpeta `DatosContenedor1` sin descomprimir
+
+El cual podremos visualizar desde nuesto contenedor
+
+```{bash}
+root@7dc39ca4b71d:/# ls
+DatosContenedorEjerciciosClase  bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@7dc39ca4b71d:/# cd DatosContenedorEjerciciosClase
+root@7dc39ca4b71d:/DatosContenedorEjerciciosClase# ls
+datos  fastx_toolkit-0.0.14.tar.bz2
+```
+
+Procedemos a descomprimir el archivo con el comando `tar -xvf` (`x` extrae los archivos, `v` nos muestra el proceso y `f` el nombre del archivo). El archivo después de descomprimirse debería verse así
+
+```{bash}
+root@7dc39ca4b71d:/DatosContenedorEjerciciosClase# ls
+datos  fastx_toolkit-0.0.14  fastx_toolkit-0.0.14.tar.bz2
+root@7dc39ca4b71d:/DatosContenedorEjerciciosClase# cd fastx_toolkit-0.0.14
+root@7dc39ca4b71d:/DatosContenedorEjerciciosClase/fastx_toolkit-0.0.14# ls
+AUTHORS  ChangeLog  Makefile.am  NEWS    THANKS      build_scripts  config.h.in  configure.ac  galaxy                   m4      scripts
+COPYING  INSTALL    Makefile.in  README  aclocal.m4  config         configure    doc           install_galaxy_files.sh  reconf  src
+```
+
+## Biocontainers
+
+Para formar los contenedores de docker, estos se forman a partir de una imagen. Esta imagen puede ser un OS básico o también puede incluir un software o un conjunto de ellos ya instalados y listos para usarlos, además de los comandos que necesitamos.
+
+Todo esto se hace atraves de un dockerfile el cual es un script que instala y describe al software que pondremos dentro de la imagen, además posee datos de la configuración e instalación, incluyendo los comandos.
+
+Biocontainers es una comunidad que crea imagenes para instalar software la cual puedes revisar [aquí](https://biocontainers.pro/)
+
+###
