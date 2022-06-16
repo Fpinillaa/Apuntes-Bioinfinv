@@ -192,7 +192,7 @@ x<-give_i_line("../data/indicadores.txt", i=2)
 
 ```
 
-La función también la podemos guardar como un ***Script***, lo cual nos permitirá llamarla desde otro script utilizando `source()`
+> Tip: La función también la podemos guardar como un ***Script***, lo cual nos permitirá llamarla desde otro script utilizando `source()`
 
 Además estas funciones seran almacenadas en el "Enviroment" del `R` 
 
