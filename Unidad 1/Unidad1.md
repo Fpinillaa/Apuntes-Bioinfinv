@@ -1,7 +1,7 @@
 # Acercándonos al uso del terminal y {bash}
 Repositorio con anotaciones para el repositorio [Bioinfinv_Unidad1](https://github.com/ravuch/BioinfinvRepro/blob/master/Unidad1/Unidad1_Intro_programacion.md) 
 
-En la primera parte realizaremos las tareas referentes a la Unidad 1, en la que trabajaremos en el terminal (es un acercamiento a como ocupar algunos comandos del terminal)
+Para esta primera parte trabajaremos en el terminal y como un acercamiento aprenderemos como ocupar algunos comandos
 
 ## Tenemos códigos disponibles de ubicación que son: 
 
