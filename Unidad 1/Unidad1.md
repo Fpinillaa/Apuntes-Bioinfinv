@@ -24,7 +24,7 @@ Con esto podemos pasar a realizar los ejercicios
 # Apuntes: 
 
 - `ls`<- ocupamos ``$ls -lSh`` (para ordenarlo por tamaño, donde nos mostrara los datos por tamaño MB y KB)
-- `mkdir`<- ocupamos este comando para poder hacer un nuevo directorio ``$mkdir -p`` (nos sirve para poder nuevos directorios a pesar de que ya existan)
+- `mkdir`<- ocupamos este comando para poder hacer un nuevo directorio ``$mkdir -p`` (nos sirve para poder hacer nuevos directorios a pesar de que ya existan)
 - `cp`<- es un comando que nos permite copiar cosas y `$cp -r` nos permite copiar directorios
 - `mv`<- es un comando para poder mover
 
